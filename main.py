@@ -1,3 +1,10 @@
+"""
+Usage:
+py main.py {start} {end}
+OR
+py main.py (creates 2 random words)
+"""
+
 import csv
 import sys
 import random
@@ -23,7 +30,7 @@ class Graph:
         for path in self.paths:
             if end in path:
                 return path
-        return None
+        return [None]
             
     def next_depth(self, path):
         for neighbour in filter(lambda x: x not in self.visited, self.nodes[path[-1]]):
@@ -44,7 +51,6 @@ def main():
         for line in csv_file:
             # print(line[0], list(filter(lambda x: x in keys, line[1:])))
             graph.add_node(line[0], list(filter(lambda x: x in keys, line[1:])))
-        
             
     print(f'Graph created, size: {len(graph.nodes)}')
     try:
