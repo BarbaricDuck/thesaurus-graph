@@ -56,7 +56,7 @@ def main():
     except IndexError:
         end = random_word_generator()
     print(f'Searching for {start} to {end}')
-    print(graph.get_path(start, end))
+    print(f'{" -> ".join(graph.get_path(start, end))}')
 
 if __name__ == '__main__':
     main()
