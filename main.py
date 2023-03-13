@@ -5,6 +5,8 @@ OR
 py main.py (creates 2 random words)
 """
 
+THESAURUS = 'generated.csv'
+
 import csv
 import sys
 import random
@@ -21,7 +23,7 @@ class Graph:
         self.visited = set()
 
         while end not in self.visited:
-            print(len(self.paths), len(self.paths[-1]))
+            # print(f'Depth: {len(self.paths)} Synonyms Checked: {len(self.paths[-1])}')
             old_len = len(self.paths[-1])
             self.paths.append([])
             for path in self.paths[-2]:
@@ -40,13 +42,13 @@ class Graph:
             self.visited.add(neighbour)
 
 def random_word_generator():
-    with open('words_big.csv') as file:
+    with open(THESAURUS) as file:
         keys = [i[0] for i in csv.reader(file)]
         return random.choice(keys)
     
 def main():
     graph = Graph()
-    with open('words_big.csv') as file:
+    with open(THESAURUS) as file:
         csv_file = [x for x in csv.reader(file)]
         keys = set([i[0] for i in csv_file])
         for line in csv_file:
@@ -71,7 +73,7 @@ def main():
     except IndexError:
         end = random_word_generator()
 
-    print(f'Searching for {start} to {end}')
+    print(f'Searching for "{start}" to "{end}"')
     print(f'{" -> ".join(graph.get_path(start, end))}')
 
 if __name__ == '__main__':
