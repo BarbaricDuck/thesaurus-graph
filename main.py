@@ -23,7 +23,7 @@ class Graph:
         self.visited = set()
 
         while end not in self.visited:
-            # print(f'Depth: {len(self.paths)} Synonyms Checked: {len(self.paths[-1])}')
+            print(f'Depth: {len(self.paths)} Synonyms Checked: {len(self.paths[-1])}')
             old_len = len(self.paths[-1])
             self.paths.append([])
             for path in self.paths[-2]:
