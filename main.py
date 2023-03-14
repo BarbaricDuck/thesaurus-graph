@@ -5,7 +5,7 @@ OR
 py main.py (creates 2 random words)
 """
 
-THESAURUS = 'words_big.csv'
+THESAURUS = 'generated.csv'
 
 import csv
 import sys
@@ -19,11 +19,14 @@ class Graph:
         self.nodes[node] = neighbours
     
     def get_path(self, start, end):
+        if start == end:
+            return [start]
         self.paths = [[[start]]]
         self.visited = set()
+        
 
         while end not in self.visited:
-            print(f'Depth: {len(self.paths)} Synonyms Checked: {len(self.paths[-1])}')
+            # print(f'Depth: {len(self.paths)} Synonyms Checked: {len(self.paths[-1])}')
             old_len = len(self.paths[-1])
             self.paths.append([])
             for path in self.paths[-2]:
