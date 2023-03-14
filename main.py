@@ -5,7 +5,7 @@ OR
 py main.py (creates 2 random words)
 """
 
-THESAURUS = 'generated.csv'
+THESAURUS = 'words_big.csv'
 
 import csv
 import sys
