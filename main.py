@@ -21,6 +21,7 @@ class Graph:
     def get_path(self, start, end):
         if start == end:
             return [start]
+        
         self.paths = [[[start]]]
         self.visited = set()
         
