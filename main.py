@@ -5,7 +5,7 @@ OR
 py main.py (creates 2 random words)
 """
 
-THESAURUS = 'generated.csv'
+THESAURUS = 'words_big.csv'
 
 import csv
 import sys
@@ -49,14 +49,17 @@ def random_word_generator():
     with open(THESAURUS) as file:
         keys = [i[0] for i in csv.reader(file)]
         return random.choice(keys)
-    
-def main():
-    graph = Graph()
-    with open(THESAURUS) as file:
+
+def read_file(file, graph):
+    with open(file) as file:
         csv_file = [x for x in csv.reader(file)]
         keys = set([i[0] for i in csv_file])
         for line in csv_file:
             graph.add_node(line[0], list(filter(lambda x: x in keys, line[1:])))
+    
+def main():
+    graph = Graph()
+    read_file(THESAURUS, graph)
             
     print(f'Graph created, size: {len(graph.nodes)}')
     try:
